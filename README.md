@@ -10,47 +10,44 @@ Full-stack TypeScript boilerplate with auth, a Hono API, and Postgres. Built for
 
 - Node.js 20+
 - pnpm 9+ (`corepack enable && corepack prepare pnpm@9.15.0 --activate`)
-- A PostgreSQL database (Neon free tier works great)
+- A PostgreSQL database (get one free at [neon.tech](https://neon.tech) in 30 seconds)
 
-### 1. Clone and install
+### Automated setup
 
 ```bash
 git clone <repo-url> && cd tanstack-boilerplate
 pnpm install
+pnpm setup
 ```
 
-### 2. Set up environment
+The setup script:
+- Checks prerequisites
+- Generates `BETTER_AUTH_SECRET` automatically
+- Prompts for your `DATABASE_URL` (the only thing you need to provide)
+- Optionally configures Google OAuth
+- Installs dependencies
+- Pushes the database schema
 
-Copy `.env.example` (or create `.env` at the root) and fill in the **required** values:
+Then `pnpm dev` and open [http://localhost:3000](http://localhost:3000).
 
-```env
-DATABASE_URL=postgresql://user:password@host/db
-BETTER_AUTH_SECRET=your-random-secret-here
-VITE_APP_URL=http://localhost:3000
+### Manual setup
+
+If you prefer to do it yourself, create `.env` from the example and fill in two values:
+
+```bash
+cp .env.example .env
 ```
 
 | Variable | What it is | How to get it |
 |---|---|---|
-| `DATABASE_URL` | Postgres connection string | [neon.tech](https://neon.tech) (free), Supabase, or any Postgres provider |
-| `BETTER_AUTH_SECRET` | Random 32+ char string for signing sessions | `openssl rand -base64 32` |
-
-That's it for the minimum setup. Everything else is optional.
-
-### 3. Push the database schema
+| `DATABASE_URL` | Postgres connection string | [neon.tech](https://neon.tech), Supabase, or any Postgres |
+| `BETTER_AUTH_SECRET` | Random string for signing sessions | `openssl rand -base64 32` |
 
 ```bash
-pnpm db:push
+pnpm install && pnpm db:push && pnpm dev
 ```
 
-Creates the auth tables (user, session, account, verification, jwks).
-
-### 4. Run
-
-```bash
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000). Email/password auth works immediately with just the two required vars.
+Everything else is optional.
 
 ## Optional Services
 
@@ -131,8 +128,10 @@ tooling/tailwind/     Shared Tailwind config
 ## Commands
 
 ```bash
+pnpm setup            # Interactive first-time setup
 pnpm dev              # Start dev server
 pnpm build            # Build everything
+pnpm deploy           # Interactive deploy (Docker or Cloudflare)
 pnpm lint             # Biome lint + format check
 pnpm type-check       # TypeScript checking
 ```
@@ -151,6 +150,14 @@ pnpm db:studio        # Open Drizzle Studio (database GUI)
 Auto-generated OpenAPI docs at [http://localhost:3000/api/docs](http://localhost:3000/api/docs).
 
 ## Deployment
+
+### One command
+
+```bash
+pnpm deploy
+```
+
+Interactive script that builds and deploys to either Docker or Cloudflare Workers. Reads secrets from your `.env` and sets them on the target platform.
 
 ### Docker (Railway, Fly.io, any VPS)
 

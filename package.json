@@ -2,6 +2,8 @@
   "name": "saas-boilerplate",
   "private": true,
   "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "deploy": "bash scripts/deploy.sh",
     "dev": "turbo dev",
     "build": "turbo build",
     "lint": "turbo lint",
