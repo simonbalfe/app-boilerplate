@@ -1,6 +1,10 @@
 import { config } from '@repo/config'
 import Stripe from 'stripe'
 
+if (!config.STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY is required')
+}
+
 export const stripe = new Stripe(config.STRIPE_SECRET_KEY, {
   apiVersion: '2025-08-27.basil',
 })

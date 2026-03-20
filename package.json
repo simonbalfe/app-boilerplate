@@ -13,6 +13,7 @@
     "db:push": "turbo db:push",
     "db:migrate": "turbo db:migrate",
     "db:studio": "turbo db:studio",
+    "deploy:cf": "tsx scripts/deploy-cf.ts",
     "docker:build": "source .env 2>/dev/null; docker build --build-arg VITE_STRIPE_PUBLISHABLE_KEY=$VITE_STRIPE_PUBLISHABLE_KEY --build-arg VITE_STRIPE_PRICE_ID=$VITE_STRIPE_PRICE_ID --build-arg VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY --build-arg VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST --build-arg VITE_APP_URL=$VITE_APP_URL -t saas-boilerplate .",
     "docker:run": "docker run -d --name saas-boilerplate --env-file .env -p 3000:3000 saas-boilerplate",
     "docker:stop": "docker rm -f saas-boilerplate",

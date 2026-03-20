@@ -4,6 +4,16 @@ import { Hono } from 'hono'
 import { describeRoute } from 'hono-openapi'
 import Stripe from 'stripe'
 
+if (!config.STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY is required')
+}
+
+if (!config.STRIPE_WEBHOOK_SECRET) {
+  throw new Error('STRIPE_WEBHOOK_SECRET is required')
+}
+
+const webhookSecret = config.STRIPE_WEBHOOK_SECRET
+
 const stripe = new Stripe(config.STRIPE_SECRET_KEY, {
   apiVersion: '2025-08-27.basil' as Stripe.LatestApiVersion,
 })
@@ -30,7 +40,7 @@ webhookRoutes.post(
     }
 
     const processingPromise = (async () => {
-      const event = stripe.webhooks.constructEvent(body, signature, config.STRIPE_WEBHOOK_SECRET)
+      const event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
       return processEvent(event)
     })()
 
