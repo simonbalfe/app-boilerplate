@@ -11,7 +11,7 @@ SaaS Boilerplate built with TanStack Start, BetterAuth, Drizzle ORM, and Stripe.
 Turborepo + pnpm workspaces. All internal packages use `@repo/` scope with `workspace:*` dependencies.
 
 - **apps/web** — TanStack Start app (Vite, React 19, TanStack Router, file-based routing)
-- **packages/api** — Hono API server, mounted via TanStack Start API routes
+- **apps/api** — Hono API server, mounted via TanStack Start API routes
 - **packages/auth** — BetterAuth config (Google OAuth, email/password)
 - **packages/db** — Drizzle ORM with PostgreSQL
 - **packages/email** — Resend + React Email templates

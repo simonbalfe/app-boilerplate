@@ -114,7 +114,7 @@ Caches Stripe subscription state. Only needed if you enable Stripe.
 
 ```
 apps/web/             TanStack Start app (routes, pages, UI)
-packages/api/         Hono API server (mounted at /api)
+apps/api/             Hono API server (mounted at /api)
 packages/auth/        BetterAuth config
 packages/db/          Drizzle ORM + PostgreSQL schema
 packages/email/       Resend + React Email templates       (optional)
