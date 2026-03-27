@@ -182,9 +182,32 @@ Skip any `VITE_*` build args you don't use. They default to empty strings.
 
 **Runtime env:** pass via `--env-file .env` or your platform's env config.
 
-### Cloudflare Workers
+### Cloudflare Workers (CI/CD)
 
-Wrangler support is wired in. Build and deploy:
+GitHub Actions deploys to Cloudflare Workers on push to `main`. Triggers on changes to `apps/web/`, `packages/`, `config/`, or `pnpm-lock.yaml`. Can also be triggered manually via `workflow_dispatch`.
+
+The pipeline runs: `pnpm install` > `pnpm lint` > `pnpm type-check` > `pnpm build` (in `apps/web`) > `wrangler deploy` > pushes all secrets via `wrangler secret:bulk`.
+
+#### Setup GitHub Secrets
+
+All environment variables and Cloudflare credentials must be stored as GitHub repository secrets. Use the setup script to load them from your local `.env`:
+
+```bash
+pnpm setup:secrets
+```
+
+This reads your `.env` and sets each variable as a GitHub secret, then prompts for `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` (required for deployment but not in `.env`).
+
+Or set secrets manually:
+
+```bash
+gh secret set -f .env
+gh secret set CLOUDFLARE_API_TOKEN --body "your-token"
+gh secret set CLOUDFLARE_ACCOUNT_ID --body "your-account-id"
+gh secret list  # verify
+```
+
+#### Manual Deploy (local)
 
 ```bash
 cd apps/web

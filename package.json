@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "setup": "tsx scripts/setup.ts",
+    "setup:secrets": "tsx scripts/setup-secrets.ts",
     "dev": "turbo dev",
     "build": "turbo build",
     "lint": "turbo lint",
