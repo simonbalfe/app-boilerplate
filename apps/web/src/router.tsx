@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/tanstackstart-react'
 import { createRouter as createTanStackRouter } from '@tanstack/react-router'
+import env from '@/src/env'
 import { routeTree } from './routeTree.gen'
 
 export function getRouter() {
@@ -22,9 +23,9 @@ export function getRouter() {
     },
   })
 
-  if (!router.isServer && import.meta.env.VITE_SENTRY_DSN) {
+  if (!router.isServer && env.SENTRY_DSN) {
     Sentry.init({
-      dsn: import.meta.env.VITE_SENTRY_DSN,
+      dsn: env.SENTRY_DSN,
       environment: import.meta.env.MODE,
       integrations: [Sentry.tanstackRouterBrowserTracingIntegration(router)],
       tracesSampleRate: 0,

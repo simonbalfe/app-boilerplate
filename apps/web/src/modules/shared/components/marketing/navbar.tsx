@@ -10,18 +10,14 @@ export function Navbar() {
   return (
     <header className="fixed top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
-        <button
-          type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-2 font-semibold text-foreground"
-        >
+        <Link to="/" className="flex items-center gap-2 font-semibold text-foreground">
           <div className="flex size-7 items-center justify-center rounded-md bg-primary">
-            <Zap className="size-4 text-primary-foreground" />
+            <Zap className="size-4 text-primary-foreground" aria-hidden="true" />
           </div>
           SaaS Boilerplate
-        </button>
+        </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav aria-label="Main navigation" className="hidden items-center gap-6 md:flex">
           <a
             href="#features"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"

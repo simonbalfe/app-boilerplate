@@ -14,6 +14,9 @@ type AuthSearch = {
 }
 
 export const Route = createFileRoute('/auth')({
+  head: () => ({
+    meta: [{ title: 'Sign In' }, { name: 'robots', content: 'noindex, nofollow' }],
+  }),
   component: AuthPage,
   validateSearch: (search: Record<string, unknown>): AuthSearch => ({
     callbackUrl: typeof search.callbackUrl === 'string' ? search.callbackUrl : undefined,

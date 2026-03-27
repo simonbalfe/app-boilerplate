@@ -17,7 +17,7 @@ const stack = [
 
 export function TechStackSection() {
   return (
-    <section className="border-b py-24 md:py-32">
+    <section id="tech-stack" className="border-b py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeader
           eyebrow="Tech Stack"

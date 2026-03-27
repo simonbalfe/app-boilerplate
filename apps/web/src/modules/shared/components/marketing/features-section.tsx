@@ -54,7 +54,7 @@ export function FeaturesSection() {
           {features.map((feature) => (
             <div key={feature.title} className="flex flex-col gap-3 bg-card p-6">
               <div className="flex size-10 items-center justify-center rounded-lg bg-accent">
-                <feature.icon className="size-5 text-accent-foreground" />
+                <feature.icon className="size-5 text-accent-foreground" aria-hidden="true" />
               </div>
               <h3 className="font-semibold text-foreground">{feature.title}</h3>
               <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>

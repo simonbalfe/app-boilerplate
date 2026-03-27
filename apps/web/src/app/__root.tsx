@@ -1,3 +1,4 @@
+import env from '@/src/env'
 import { LayoutContent } from '@shared/components/layout/layout-content'
 import { PostHogProvider } from '@shared/components/providers/posthog-provider'
 import { ThemeProvider } from '@shared/components/providers/theme-provider'
@@ -12,12 +13,27 @@ export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: 'SaaS Boilerplate' },
       { name: 'description', content: 'A modern SaaS boilerplate with auth and payments' },
+    ],
+    links: [{ rel: 'icon', href: '/favicon.ico' }],
+    scripts: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'SaaS Boilerplate',
+          url: env.APP_URL,
+          publisher: {
+            '@type': 'Organization',
+            name: 'SaaS Boilerplate',
+            url: env.APP_URL,
+            logo: { '@type': 'ImageObject', url: `${env.APP_URL}/logo.svg` },
+          },
+        }),
+      },
     ],
   }),
   component: RootLayout,

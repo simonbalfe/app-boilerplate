@@ -28,6 +28,10 @@ import { useEffect, useState } from 'react'
 import { Area, AreaChart, Bar, BarChart, XAxis } from 'recharts'
 
 export const Route = createFileRoute('/dashboard')({
+  ssr: false,
+  head: () => ({
+    meta: [{ title: 'Dashboard' }, { name: 'robots', content: 'noindex, nofollow' }],
+  }),
   component: DashboardPage,
 })
 
@@ -572,15 +576,11 @@ function DashboardPage() {
                 <div className="space-y-4">
                   <div className="space-y-1.5">
                     <p className="text-xs text-muted-foreground font-mono">--font-sans</p>
-                    <p className="text-xl font-sans">
-                      The quick brown fox jumps over the lazy dog
-                    </p>
+                    <p className="text-xl font-sans">The quick brown fox jumps over the lazy dog</p>
                   </div>
                   <div className="space-y-1.5">
                     <p className="text-xs text-muted-foreground font-mono">--font-mono</p>
-                    <p className="text-xl font-mono">
-                      The quick brown fox jumps over the lazy dog
-                    </p>
+                    <p className="text-xl font-mono">The quick brown fox jumps over the lazy dog</p>
                   </div>
                   <div className="space-y-1.5">
                     <p className="text-xs text-muted-foreground font-mono">--font-serif</p>
@@ -595,9 +595,7 @@ function DashboardPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Border Radius</CardTitle>
-                <CardDescription>
-                  Derived from --radius: 0.625rem base value
-                </CardDescription>
+                <CardDescription>Derived from --radius: 0.625rem base value</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-4 gap-4">

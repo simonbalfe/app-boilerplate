@@ -14,6 +14,7 @@ export const Route = createFileRoute('/test')({
     meta: [
       { title: 'Design System Test' },
       { name: 'description', content: 'Testing typography and design tokens' },
+      { name: 'robots', content: 'noindex, nofollow' },
     ],
   }),
   component: TestPage,

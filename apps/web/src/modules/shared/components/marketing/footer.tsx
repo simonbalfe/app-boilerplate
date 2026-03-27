@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router'
 import { Separator } from '@ui/components/separator'
 import { Github, Zap } from 'lucide-react'
 
@@ -6,18 +7,14 @@ export function Footer() {
     <footer className="py-12">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-          <button
-            type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2 font-semibold text-foreground"
-          >
+          <Link to="/" className="flex items-center gap-2 font-semibold text-foreground">
             <div className="flex size-7 items-center justify-center rounded-md bg-primary">
-              <Zap className="size-4 text-primary-foreground" />
+              <Zap className="size-4 text-primary-foreground" aria-hidden="true" />
             </div>
             SaaS Boilerplate
-          </button>
+          </Link>
 
-          <nav className="flex items-center gap-6">
+          <nav aria-label="Footer navigation" className="flex items-center gap-6">
             <a
               href="https://github.com"
               target="_blank"
@@ -45,8 +42,9 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="GitHub repository"
           >
-            <Github className="size-5" />
+            <Github className="size-5" aria-hidden="true" />
           </a>
         </div>
 

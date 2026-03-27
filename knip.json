@@ -1,0 +1,23 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignoreBinaries": ["stripe"],
+  "ignoreWorkspaces": ["tooling/*"],
+  "workspaces": {
+    ".": {
+      "entry": ["scripts/*.ts"]
+    },
+    "apps/web": {
+      "ignoreDependencies": ["@repo/typescript-config"],
+      "ignore": ["src/modules/ui/**"]
+    },
+    "apps/api": {
+      "ignoreDependencies": ["@repo/typescript-config"]
+    },
+    "config": {
+      "ignoreDependencies": ["@repo/typescript-config"]
+    },
+    "packages/*": {
+      "ignoreDependencies": ["@repo/typescript-config"]
+    }
+  }
+}

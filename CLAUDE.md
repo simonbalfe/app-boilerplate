@@ -1,27 +1,21 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Project Overview
 
 SaaS Boilerplate built with TanStack Start, BetterAuth, Drizzle ORM, and Stripe. Frontend: TanStack Start (Vite + React 19), Backend: Hono API, Auth: BetterAuth, DB: PostgreSQL via Drizzle, Payments: Stripe.
 
-## Monorepo Structure
-
 Turborepo + pnpm workspaces. All internal packages use `@repo/` scope with `workspace:*` dependencies.
 
-- **apps/web** — TanStack Start app (Vite, React 19, TanStack Router, file-based routing)
-- **apps/api** — Hono API server, mounted via TanStack Start API routes
-- **packages/auth** — BetterAuth config (Google OAuth, email/password)
-- **packages/db** — Drizzle ORM with PostgreSQL
-- **packages/email** — Resend + React Email templates
-- **packages/redis** — Upstash Redis client
-- **packages/stripe** — Stripe integration (checkout, webhooks, subscription sync)
-- **config/** — Centralized app config (`@repo/config`)
-- **tooling/typescript** — Shared tsconfigs (base)
-- **tooling/tailwind** — Shared Tailwind CSS config
+## Reference
 
-## Common Commands
+| File | Scope |
+|------|-------|
+| [`.claude/coding-style.md`](.claude/coding-style.md) | No comments, early returns, type derivation, business logic hygiene, file organization |
+| [`.claude/frontend.md`](.claude/frontend.md) | React components, TanStack Router, hooks, styling, module organization |
+| [`.claude/backend.md`](.claude/backend.md) | Layered architecture, Hono + Zod routes, API design, security |
+| [`.claude/project-structure.md`](.claude/project-structure.md) | Monorepo layout, package descriptions, where to place new code |
+
+## Commands
 
 ```bash
 pnpm dev                # Start all apps (turbo)
@@ -29,70 +23,34 @@ pnpm build              # Build all packages (turbo)
 pnpm lint               # Biome check
 pnpm type-check         # TypeScript type checking
 pnpm clean              # Clean build outputs
-```
-
-### Database (via turbo)
-
-```bash
 pnpm db:generate        # Generate Drizzle client
 pnpm db:push            # Push schema to database
 pnpm db:migrate         # Run Drizzle migrations
 pnpm db:studio          # Open Drizzle Studio
+pnpm knip               # Find unused code/dependencies
 ```
 
-### Docker
+## Deployment
 
-```bash
-pnpm docker:build       # Build Docker image
-pnpm docker:run         # Run container on port 3000
-pnpm docker:stop        # Stop container
-pnpm docker:logs        # Tail container logs
-```
+GitHub Actions deploys to Cloudflare Workers on push to `main` (`.github/workflows/deploy.yml`). Triggers on changes to `apps/web/`, `packages/`, `config/`, or `pnpm-lock.yaml`. Runs lint and type-check before deploying. All env vars are stored as GitHub repository secrets and pushed via `wrangler secret:bulk`.
 
-## Architecture Patterns
+## Core Rules
 
-### API Routing
+- **No comments**: code must be self-explanatory
+- **Use pnpm**: never bun/npm/yarn
+- **No silent error swallowing**: never use empty catch blocks
+- **Import from `@repo/*`**: not relative paths across package boundaries
+- **`import type`** for type-only imports
+- **Theme tokens only**: `bg-primary`, `text-muted-foreground`, never `bg-blue-500`
+- **Biome** for linting and formatting (not ESLint/Prettier): line width 100, 2 spaces, single quotes, no semicolons
 
-Hono API server in `packages/api` mounted via TanStack Start catch-all API route. Auth routes handled by BetterAuth at `/api/auth/**`.
+## Linting Details
 
-### Auth Flow
-
-BetterAuth manages all auth. Drizzle schema is defined in `packages/db`. Providers: Google OAuth, email/password.
-
-### Web App Conventions
-
-- TanStack Router with file-based routing in `apps/web/src/app/`
-- UI components use shadcn/ui patterns in `apps/web/src/components/ui/`
-- Styling: Tailwind CSS v4 with CSS theme variables
-- State: TanStack Query for server state
-- `cn()` utility (clsx + tailwind-merge)
-
-## Linting & Formatting
-
-Biome handles both linting and formatting (not ESLint/Prettier). Key rules:
-- Unused imports are errors
-- `useImportType`: error (use `import type` for type-only imports)
+- Unused imports: error
+- `useImportType`: error
 - `noExplicitAny`: warn
 - `useOptionalChain`: error
-- Generated files (`*.gen.ts`, `*.gen.js`) are excluded
-- Line width: 100, indent: 2 spaces, single quotes, no semicolons
-
-## Coding Rules
-
-### Never write comments
-Code should be self-explanatory through clear naming and structure. No inline comments, no JSDoc, no block comments.
-
-### Use pnpm, never bun/npm/yarn
-This project uses pnpm workspaces. Always use `pnpm` for package management.
-
-### Styling — Use theme tokens, never hardcoded colors
-Use CSS variable theme tokens (`bg-primary`, `text-muted-foreground`, etc.), not raw Tailwind color classes like `bg-blue-500`.
-
-### Error handling — No silent swallowing
-Never use empty catch blocks. Always handle or log errors with context.
-
-### Imports — Use workspace packages
-Import from `@repo/*` packages, not relative paths across package boundaries.
+- Generated files (`*.gen.ts`, `*.gen.js`) excluded
 
 ## Environment
 

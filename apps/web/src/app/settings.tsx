@@ -19,6 +19,10 @@ import { LogOut, Trash2, User } from 'lucide-react'
 import { useEffect } from 'react'
 
 export const Route = createFileRoute('/settings')({
+  ssr: false,
+  head: () => ({
+    meta: [{ title: 'Settings' }, { name: 'robots', content: 'noindex, nofollow' }],
+  }),
   component: SettingsPage,
 })
 

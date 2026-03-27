@@ -44,7 +44,7 @@ export function HowItWorksSection() {
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-muted-foreground">{step.number}</span>
                 <div className="flex size-10 items-center justify-center rounded-lg bg-accent">
-                  <step.icon className="size-5 text-accent-foreground" />
+                  <step.icon className="size-5 text-accent-foreground" aria-hidden="true" />
                 </div>
               </div>
               <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
