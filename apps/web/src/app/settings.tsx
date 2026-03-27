@@ -1,4 +1,5 @@
 import { useUser } from '@shared/hooks/use-user'
+import { api } from '@shared/lib/api-client'
 import { authClient } from '@shared/lib/auth-client'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import {
@@ -43,10 +44,8 @@ function SettingsPage() {
 
   const handleDeleteAccount = async () => {
     if (!user?.id) return
-    await fetch('/api/users/delete', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId: user.id }),
+    await api.api.users.delete.$post({
+      json: { userId: user.id },
     })
     await authClient.signOut()
     void navigate({ to: '/auth' })

@@ -18,9 +18,7 @@ const stripe = new Stripe(config.STRIPE_SECRET_KEY, {
   apiVersion: '2025-08-27.basil' as Stripe.LatestApiVersion,
 })
 
-export const webhookRoutes = new Hono()
-
-webhookRoutes.post(
+export const webhookRoutes = new Hono().post(
   '/webhooks/stripe',
   describeRoute({
     tags: ['Webhooks'],

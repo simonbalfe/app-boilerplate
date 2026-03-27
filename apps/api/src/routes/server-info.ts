@@ -2,9 +2,7 @@ import { Hono } from 'hono'
 import { describeRoute } from 'hono-openapi'
 import { optionalAuth } from '../middleware/auth'
 
-export const serverInfoRoutes = new Hono()
-
-serverInfoRoutes.get(
+export const serverInfoRoutes = new Hono().get(
   '/server-info',
   describeRoute({
     tags: ['Server'],

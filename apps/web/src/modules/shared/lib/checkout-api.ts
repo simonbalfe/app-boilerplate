@@ -1,4 +1,5 @@
 import env from '@/src/env'
+import { api } from '@shared/lib/api-client'
 import { authClient } from '@shared/lib/auth-client'
 import { loadStripe } from '@stripe/stripe-js'
 import { useMutation } from '@tanstack/react-query'
@@ -10,10 +11,8 @@ async function createCheckoutSession(userId: string, priceId?: string | null) {
   const email = session.data?.user.email ?? ''
   const name = session.data?.user.name ?? ''
 
-  const res = await fetch('/api/checkout/session', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
+  const res = await api.api.checkout.session.$post({
+    json: {
       userId,
       email,
       name,
@@ -21,12 +20,12 @@ async function createCheckoutSession(userId: string, priceId?: string | null) {
         price: priceId ?? env.STRIPE_PRICE_ID,
         quantity: 1,
       },
-    }),
+    },
   })
   const result = await res.json()
 
-  if (!result.sessionId) {
-    throw new Error(result.error ?? 'Checkout session creation failed')
+  if (!('sessionId' in result)) {
+    throw new Error(('error' in result ? result.error : null) ?? 'Checkout session creation failed')
   }
 
   const stripe = await stripePromise

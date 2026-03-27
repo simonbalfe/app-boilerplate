@@ -27,13 +27,14 @@ app.use('*', async (c, next) => {
   console.log(`[HONO] ${c.req.method} ${c.req.path} -> ${c.res.status}`)
 })
 
-app.route('/', authRoutes)
-app.route('/', checkoutRoutes)
-app.route('/', subscriptionRoutes)
-app.route('/', todoRoutes)
-app.route('/', userRoutes)
-app.route('/', webhookRoutes)
-app.route('/', serverInfoRoutes)
+const routes = app
+  .route('/', authRoutes)
+  .route('/', checkoutRoutes)
+  .route('/', subscriptionRoutes)
+  .route('/', todoRoutes)
+  .route('/', userRoutes)
+  .route('/', webhookRoutes)
+  .route('/', serverInfoRoutes)
 
 app.get('/app-openapi', async (c) => {
   const handler = openAPIRouteHandler(app, {
@@ -84,4 +85,4 @@ app.get(
   }),
 )
 
-export type AppRouter = typeof app
+export type AppRouter = typeof routes

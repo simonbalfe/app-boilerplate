@@ -3,9 +3,7 @@ import { describeRoute } from 'hono-openapi'
 import { optionalAuth } from '../middleware/auth'
 import { getSubscriptionStatus } from '../services/subscription'
 
-export const subscriptionRoutes = new Hono()
-
-subscriptionRoutes.get(
+export const subscriptionRoutes = new Hono().get(
   '/subscription/check',
   describeRoute({
     tags: ['Subscription'],
@@ -20,7 +18,7 @@ subscriptionRoutes.get(
     const session = c.get('session')
 
     if (!session?.user) {
-      return c.json({ isSubscribed: false, tier: 'Free' })
+      return c.json({ isSubscribed: false as const, tier: 'Free' as const })
     }
 
     const status = await getSubscriptionStatus(session.user.id)

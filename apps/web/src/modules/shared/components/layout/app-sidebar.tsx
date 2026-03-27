@@ -1,5 +1,6 @@
 import { useTheme } from '@shared/components/providers/theme-provider'
 import { useUser } from '@shared/hooks/use-user'
+import { api } from '@shared/lib/api-client'
 import { authClient } from '@shared/lib/auth-client'
 import { useCheckout } from '@shared/lib/checkout-api'
 import { Link, useLocation } from '@tanstack/react-router'
@@ -54,7 +55,8 @@ export function AppSidebar() {
 
   useEffect(() => {
     if (user) {
-      void fetch('/api/subscription/check')
+      void api.api.subscription.check
+        .$get()
         .then((res) => res.json())
         .then((data) => {
           setIsSubscribed(data.isSubscribed)
