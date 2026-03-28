@@ -14,6 +14,8 @@ import { Route as SettingsRouteImport } from './app/settings'
 import { Route as DashboardRouteImport } from './app/dashboard'
 import { Route as AuthRouteImport } from './app/auth'
 import { Route as IndexRouteImport } from './app/index'
+import { Route as SitemapXmlRouteImport } from './app/sitemap.xml'
+import { Route as RobotsTxtRouteImport } from './app/robots.txt'
 import { Route as AuthResetPasswordRouteImport } from './app/auth.reset-password'
 import { Route as ApiSplatRouteImport } from './app/api/$'
 
@@ -42,6 +44,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapXmlRoute = SitemapXmlRouteImport.update({
+  id: '/sitemap/xml',
+  path: '/sitemap/xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsTxtRoute = RobotsTxtRouteImport.update({
+  id: '/robots/txt',
+  path: '/robots/txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
@@ -61,6 +73,8 @@ export interface FileRoutesByFullPath {
   '/test': typeof TestRoute
   '/api/$': typeof ApiSplatRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +84,8 @@ export interface FileRoutesByTo {
   '/test': typeof TestRoute
   '/api/$': typeof ApiSplatRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +96,8 @@ export interface FileRoutesById {
   '/test': typeof TestRoute
   '/api/$': typeof ApiSplatRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/robots/txt': typeof RobotsTxtRoute
+  '/sitemap/xml': typeof SitemapXmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +109,8 @@ export interface FileRouteTypes {
     | '/test'
     | '/api/$'
     | '/auth/reset-password'
+    | '/robots/txt'
+    | '/sitemap/xml'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +120,8 @@ export interface FileRouteTypes {
     | '/test'
     | '/api/$'
     | '/auth/reset-password'
+    | '/robots/txt'
+    | '/sitemap/xml'
   id:
     | '__root__'
     | '/'
@@ -109,6 +131,8 @@ export interface FileRouteTypes {
     | '/test'
     | '/api/$'
     | '/auth/reset-password'
+    | '/robots/txt'
+    | '/sitemap/xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,6 +142,8 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   TestRoute: typeof TestRoute
   ApiSplatRoute: typeof ApiSplatRoute
+  RobotsTxtRoute: typeof RobotsTxtRoute
+  SitemapXmlRoute: typeof SitemapXmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -157,6 +183,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap/xml': {
+      id: '/sitemap/xml'
+      path: '/sitemap/xml'
+      fullPath: '/sitemap/xml'
+      preLoaderRoute: typeof SitemapXmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots/txt': {
+      id: '/robots/txt'
+      path: '/robots/txt'
+      fullPath: '/robots/txt'
+      preLoaderRoute: typeof RobotsTxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth/reset-password': {
       id: '/auth/reset-password'
       path: '/reset-password'
@@ -191,6 +231,8 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   TestRoute: TestRoute,
   ApiSplatRoute: ApiSplatRoute,
+  RobotsTxtRoute: RobotsTxtRoute,
+  SitemapXmlRoute: SitemapXmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

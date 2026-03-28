@@ -2,11 +2,11 @@ import { z } from 'zod'
 
 const clientEnvSchema = z.object({
   VITE_APP_URL: z.string().url(),
-  VITE_STRIPE_PUBLISHABLE_KEY: z.string().optional(),
-  VITE_STRIPE_PRICE_ID: z.string().optional(),
-  VITE_POSTHOG_KEY: z.string().optional(),
-  VITE_POSTHOG_HOST: z.string().url().optional(),
-  VITE_SENTRY_DSN: z.string().optional(),
+  VITE_STRIPE_PUBLISHABLE_KEY: z.string().min(1),
+  VITE_STRIPE_PRICE_ID: z.string().min(1),
+  VITE_POSTHOG_KEY: z.string().min(1),
+  VITE_POSTHOG_HOST: z.string().url(),
+  VITE_SENTRY_DSN: z.string().min(1),
 })
 
 const parsed = clientEnvSchema.safeParse(import.meta.env)
