@@ -16,6 +16,8 @@ import { Route as AuthRouteImport } from './app/auth'
 import { Route as IndexRouteImport } from './app/index'
 import { Route as SitemapXmlRouteImport } from './app/sitemap.xml'
 import { Route as RobotsTxtRouteImport } from './app/robots.txt'
+import { Route as ManifestWebmanifestRouteImport } from './app/manifest.webmanifest'
+import { Route as LlmsTxtRouteImport } from './app/llms.txt'
 import { Route as AuthResetPasswordRouteImport } from './app/auth.reset-password'
 import { Route as ApiSplatRouteImport } from './app/api/$'
 
@@ -54,6 +56,16 @@ const RobotsTxtRoute = RobotsTxtRouteImport.update({
   path: '/robots/txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ManifestWebmanifestRoute = ManifestWebmanifestRouteImport.update({
+  id: '/manifest/webmanifest',
+  path: '/manifest/webmanifest',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsTxtRoute = LlmsTxtRouteImport.update({
+  id: '/llms/txt',
+  path: '/llms/txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
@@ -73,6 +85,8 @@ export interface FileRoutesByFullPath {
   '/test': typeof TestRoute
   '/api/$': typeof ApiSplatRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/llms/txt': typeof LlmsTxtRoute
+  '/manifest/webmanifest': typeof ManifestWebmanifestRoute
   '/robots/txt': typeof RobotsTxtRoute
   '/sitemap/xml': typeof SitemapXmlRoute
 }
@@ -84,6 +98,8 @@ export interface FileRoutesByTo {
   '/test': typeof TestRoute
   '/api/$': typeof ApiSplatRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/llms/txt': typeof LlmsTxtRoute
+  '/manifest/webmanifest': typeof ManifestWebmanifestRoute
   '/robots/txt': typeof RobotsTxtRoute
   '/sitemap/xml': typeof SitemapXmlRoute
 }
@@ -96,6 +112,8 @@ export interface FileRoutesById {
   '/test': typeof TestRoute
   '/api/$': typeof ApiSplatRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/llms/txt': typeof LlmsTxtRoute
+  '/manifest/webmanifest': typeof ManifestWebmanifestRoute
   '/robots/txt': typeof RobotsTxtRoute
   '/sitemap/xml': typeof SitemapXmlRoute
 }
@@ -109,6 +127,8 @@ export interface FileRouteTypes {
     | '/test'
     | '/api/$'
     | '/auth/reset-password'
+    | '/llms/txt'
+    | '/manifest/webmanifest'
     | '/robots/txt'
     | '/sitemap/xml'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +140,8 @@ export interface FileRouteTypes {
     | '/test'
     | '/api/$'
     | '/auth/reset-password'
+    | '/llms/txt'
+    | '/manifest/webmanifest'
     | '/robots/txt'
     | '/sitemap/xml'
   id:
@@ -131,6 +153,8 @@ export interface FileRouteTypes {
     | '/test'
     | '/api/$'
     | '/auth/reset-password'
+    | '/llms/txt'
+    | '/manifest/webmanifest'
     | '/robots/txt'
     | '/sitemap/xml'
   fileRoutesById: FileRoutesById
@@ -142,6 +166,8 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   TestRoute: typeof TestRoute
   ApiSplatRoute: typeof ApiSplatRoute
+  LlmsTxtRoute: typeof LlmsTxtRoute
+  ManifestWebmanifestRoute: typeof ManifestWebmanifestRoute
   RobotsTxtRoute: typeof RobotsTxtRoute
   SitemapXmlRoute: typeof SitemapXmlRoute
 }
@@ -197,6 +223,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RobotsTxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/manifest/webmanifest': {
+      id: '/manifest/webmanifest'
+      path: '/manifest/webmanifest'
+      fullPath: '/manifest/webmanifest'
+      preLoaderRoute: typeof ManifestWebmanifestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms/txt': {
+      id: '/llms/txt'
+      path: '/llms/txt'
+      fullPath: '/llms/txt'
+      preLoaderRoute: typeof LlmsTxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth/reset-password': {
       id: '/auth/reset-password'
       path: '/reset-password'
@@ -231,6 +271,8 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   TestRoute: TestRoute,
   ApiSplatRoute: ApiSplatRoute,
+  LlmsTxtRoute: LlmsTxtRoute,
+  ManifestWebmanifestRoute: ManifestWebmanifestRoute,
   RobotsTxtRoute: RobotsTxtRoute,
   SitemapXmlRoute: SitemapXmlRoute,
 }

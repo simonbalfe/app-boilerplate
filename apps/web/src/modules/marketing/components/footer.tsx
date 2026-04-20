@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { Separator } from '@ui/components/separator'
 import { Github, Zap } from 'lucide-react'
+import { siteConfig } from '@/src/site.config'
 
 export function Footer() {
   return (
@@ -11,7 +12,7 @@ export function Footer() {
             <div className="flex size-7 items-center justify-center rounded-md bg-primary">
               <Zap className="size-4 text-primary-foreground" aria-hidden="true" />
             </div>
-            SaaS Boilerplate
+            {siteConfig.name}
           </Link>
 
           <nav aria-label="Footer navigation" className="flex items-center gap-6">

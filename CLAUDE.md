@@ -14,6 +14,7 @@ Turborepo + pnpm workspaces. All internal packages use `@repo/` scope with `work
 | [`.claude/frontend.md`](.claude/frontend.md) | React components, TanStack Router, hooks, styling, module organization |
 | [`.claude/backend.md`](.claude/backend.md) | Layered architecture, Hono + Zod routes, API design, security |
 | [`.claude/project-structure.md`](.claude/project-structure.md) | Monorepo layout, package descriptions, where to place new code |
+| [`.claude/structure.md`](.claude/structure.md) | Web app's marketing-vs-app folder split + cross-read rules (read before touching `apps/web/`) |
 
 ## Commands
 

@@ -1,4 +1,4 @@
-import { SectionHeader } from '@shared/components/marketing/section-header'
+import { SectionHeader } from '@marketing/components/section-header'
 
 const stack = [
   { name: 'TanStack Start', category: 'Framework' },

@@ -1,6 +1,7 @@
 import { useUser } from '@shared/hooks/use-user'
 import { authClient } from '@shared/lib/auth-client'
 import { createFileRoute, useNavigate, useSearch } from '@tanstack/react-router'
+import { siteConfig } from '@/src/site.config'
 import { Alert, AlertDescription } from '@ui/components/alert'
 import { Button } from '@ui/components/button'
 import { Card, CardContent } from '@ui/components/card'
@@ -186,7 +187,7 @@ function AuthPageContent() {
           <div className="text-center space-y-3">
             <div className="flex justify-center">
               <div className="flex size-10 items-center justify-center">
-                <img src="/logo.svg" alt="LaunchStack" className="size-8" />
+                <img src="/logo.svg" alt={siteConfig.name} className="size-8" />
               </div>
             </div>
             <div className="space-y-1">

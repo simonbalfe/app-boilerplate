@@ -3,6 +3,7 @@ import { useUser } from '@shared/hooks/use-user'
 import { Link } from '@tanstack/react-router'
 import { Button } from '@ui/components/button'
 import { Zap } from 'lucide-react'
+import { siteConfig } from '@/src/site.config'
 
 export function Navbar() {
   const { user } = useUser()
@@ -14,7 +15,7 @@ export function Navbar() {
           <div className="flex size-7 items-center justify-center rounded-md bg-primary">
             <Zap className="size-4 text-primary-foreground" aria-hidden="true" />
           </div>
-          SaaS Boilerplate
+          {siteConfig.name}
         </Link>
 
         <nav aria-label="Main navigation" className="hidden items-center gap-6 md:flex">

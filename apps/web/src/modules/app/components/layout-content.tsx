@@ -1,6 +1,6 @@
 'use client'
 
-import { AppSidebar } from '@shared/components/layout/app-sidebar'
+import { AppSidebar } from '@app/components/app-sidebar'
 import { useUser } from '@shared/hooks/use-user'
 import { useLocation } from '@tanstack/react-router'
 import { Separator } from '@ui/components/separator'

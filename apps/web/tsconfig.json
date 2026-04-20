@@ -15,7 +15,9 @@
     "paths": {
       "@/*": ["./*"],
       "@ui/*": ["./src/modules/ui/*"],
-      "@shared/*": ["./src/modules/shared/*"]
+      "@shared/*": ["./src/modules/shared/*"],
+      "@marketing/*": ["./src/modules/marketing/*"],
+      "@app/*": ["./src/modules/app/*"]
     },
     "target": "ES2022"
   },

@@ -2,8 +2,9 @@ import { useTheme } from '@shared/components/providers/theme-provider'
 import { useUser } from '@shared/hooks/use-user'
 import { api } from '@shared/lib/api-client'
 import { authClient } from '@shared/lib/auth-client'
-import { useCheckout } from '@shared/lib/checkout-api'
+import { useCheckout } from '@app/lib/checkout-api'
 import { Link, useLocation } from '@tanstack/react-router'
+import { siteConfig } from '@/src/site.config'
 import { Avatar, AvatarFallback, AvatarImage } from '@ui/components/avatar'
 import { Badge } from '@ui/components/badge'
 import {
@@ -78,12 +79,12 @@ export function AppSidebar() {
             <SidebarMenuButton size="lg" asChild>
               <Link to="/">
                 <div className="flex size-8 items-center justify-center shrink-0">
-                  <img src="/logo.svg" alt="LaunchStack" className="size-6" />
+                  <img src="/logo.svg" alt={siteConfig.name} className="size-6" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold text-sm tracking-tight">LaunchStack</span>
+                  <span className="font-semibold text-sm tracking-tight">{siteConfig.name}</span>
                   <span className="text-xs text-muted-foreground">
-                    {tier ? `${tier} Plan` : 'SaaS Boilerplate'}
+                    {tier ? `${tier} Plan` : siteConfig.tagline}
                   </span>
                 </div>
               </Link>

@@ -1,26 +1,22 @@
-import env from '@/src/env'
 import { createFileRoute } from '@tanstack/react-router'
+import { siteConfig } from '@/src/site.config'
 
 export const Route = createFileRoute('/robots.txt' as any)({
   server: {
     handlers: {
       GET: () => {
-        const siteUrl = env.APP_URL
+        const lines = [
+          'User-agent: *',
+          'Allow: /',
+          '',
+          ...siteConfig.disallowPaths.map((p) => `Disallow: ${p}`),
+          '',
+          `Sitemap: ${siteConfig.url}/sitemap.xml`,
+        ]
 
-        return new Response(
-          [
-            'User-agent: *',
-            'Allow: /',
-            '',
-            'Disallow: /dashboard',
-            'Disallow: /settings',
-            'Disallow: /auth',
-            'Disallow: /api/',
-            '',
-            `Sitemap: ${siteUrl}/sitemap.xml`,
-          ].join('\n'),
-          { headers: { 'Content-Type': 'text/plain; charset=utf-8' } },
-        )
+        return new Response(lines.join('\n'), {
+          headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+        })
       },
     },
   },

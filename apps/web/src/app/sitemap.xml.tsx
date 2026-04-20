@@ -1,18 +1,23 @@
-import env from '@/src/env'
 import { createFileRoute } from '@tanstack/react-router'
+import { siteConfig } from '@/src/site.config'
 
-const MARKETING_ROUTES = [{ path: '/', changefreq: 'weekly', priority: '1.0' }]
+type SitemapRoute = {
+  path: string
+  changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
+  priority: string
+}
+
+const MARKETING_ROUTES: SitemapRoute[] = [{ path: '/', changefreq: 'weekly', priority: '1.0' }]
 
 export const Route = createFileRoute('/sitemap.xml' as any)({
   server: {
     handlers: {
       GET: () => {
-        const siteUrl = env.APP_URL
         const today = new Date().toISOString().split('T')[0]
 
         const urls = MARKETING_ROUTES.map(
           (route) => `  <url>
-    <loc>${siteUrl}${route.path}</loc>
+    <loc>${siteConfig.url}${route.path}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority}</priority>

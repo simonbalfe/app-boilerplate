@@ -1,4 +1,4 @@
-import { SectionHeader } from '@shared/components/marketing/section-header'
+import { SectionHeader } from '@marketing/components/section-header'
 import { GitFork, Rocket, Wrench } from 'lucide-react'
 
 const steps = [
