@@ -12,8 +12,12 @@ import { jwt, openAPI } from 'better-auth/plugins'
 console.log('[AUTH SERVER] BetterAuth config:', {
   baseURL: config.APP_URL,
   trustedOrigins: [config.APP_URL],
-  BETTER_AUTH_SECRET: config.BETTER_AUTH_SECRET ? `${config.BETTER_AUTH_SECRET.slice(0, 4)}***` : '(empty)',
-  GOOGLE_CLIENT_ID: config.GOOGLE_CLIENT_ID ? `${config.GOOGLE_CLIENT_ID.slice(0, 8)}***` : '(empty)',
+  BETTER_AUTH_SECRET: config.BETTER_AUTH_SECRET
+    ? `${config.BETTER_AUTH_SECRET.slice(0, 4)}***`
+    : '(empty)',
+  GOOGLE_CLIENT_ID: config.GOOGLE_CLIENT_ID
+    ? `${config.GOOGLE_CLIENT_ID.slice(0, 8)}***`
+    : '(empty)',
   GOOGLE_CLIENT_SECRET: config.GOOGLE_CLIENT_SECRET ? '***set***' : '(empty)',
   RESEND_FROM: config.RESEND_FROM || '(empty)',
   RESEND_API_KEY: config.RESEND_API_KEY ? `${config.RESEND_API_KEY.slice(0, 4)}***` : '(empty)',
