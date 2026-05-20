@@ -1,3 +1,4 @@
+import { siteConfig } from '@/src/site.config'
 import { CtaSection } from '@marketing/components/cta-section'
 import { FeaturesSection } from '@marketing/components/features-section'
 import { Footer } from '@marketing/components/footer'
@@ -5,10 +6,9 @@ import { HeroSection } from '@marketing/components/hero-section'
 import { HowItWorksSection } from '@marketing/components/how-it-works-section'
 import { Navbar } from '@marketing/components/navbar'
 import { TechStackSection } from '@marketing/components/tech-stack-section'
-import { seo } from '@marketing/lib/seo'
 import { jsonLdScript, softwareAppSchema } from '@marketing/lib/schema'
+import { seo } from '@marketing/lib/seo'
 import { createFileRoute } from '@tanstack/react-router'
-import { siteConfig } from '@/src/site.config'
 
 export const Route = createFileRoute('/')({
   head: () => ({

@@ -1,9 +1,9 @@
+import { siteConfig } from '@/src/site.config'
 import { ThemeToggle } from '@shared/components/theme-toggle'
 import { useUser } from '@shared/hooks/use-user'
 import { Link } from '@tanstack/react-router'
 import { Button } from '@ui/components/button'
 import { Zap } from 'lucide-react'
-import { siteConfig } from '@/src/site.config'
 
 export function Navbar() {
   const { user } = useUser()

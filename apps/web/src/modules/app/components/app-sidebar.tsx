@@ -1,10 +1,10 @@
+import { siteConfig } from '@/src/site.config'
+import { useCheckout } from '@app/lib/checkout-api'
 import { useTheme } from '@shared/components/providers/theme-provider'
 import { useUser } from '@shared/hooks/use-user'
 import { api } from '@shared/lib/api-client'
 import { authClient } from '@shared/lib/auth-client'
-import { useCheckout } from '@app/lib/checkout-api'
 import { Link, useLocation } from '@tanstack/react-router'
-import { siteConfig } from '@/src/site.config'
 import { Avatar, AvatarFallback, AvatarImage } from '@ui/components/avatar'
 import { Badge } from '@ui/components/badge'
 import {

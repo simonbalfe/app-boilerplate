@@ -16,9 +16,11 @@ export function organizationSchema(): JsonLd {
       '@type': 'ImageObject',
       url: absoluteUrl('/logo.svg'),
     },
-    sameAs: [siteConfig.twitter.site ? `https://twitter.com/${siteConfig.twitter.site.replace('@', '')}` : undefined].filter(
-      Boolean,
-    ),
+    sameAs: [
+      siteConfig.twitter.site
+        ? `https://twitter.com/${siteConfig.twitter.site.replace('@', '')}`
+        : undefined,
+    ].filter(Boolean),
   }
 }
 

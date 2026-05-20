@@ -1,7 +1,7 @@
+import { siteConfig } from '@/src/site.config'
 import { Link } from '@tanstack/react-router'
 import { Separator } from '@ui/components/separator'
 import { Github, Zap } from 'lucide-react'
-import { siteConfig } from '@/src/site.config'
 
 export function Footer() {
   return (

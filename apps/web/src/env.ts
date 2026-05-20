@@ -12,7 +12,9 @@ const clientEnvSchema = z.object({
 const parsed = clientEnvSchema.safeParse(import.meta.env)
 
 if (!parsed.success) {
-  throw new Error(`Invalid client environment variables: ${JSON.stringify(parsed.error.flatten().fieldErrors)}`)
+  throw new Error(
+    `Invalid client environment variables: ${JSON.stringify(parsed.error.flatten().fieldErrors)}`,
+  )
 }
 
 const data = parsed.data

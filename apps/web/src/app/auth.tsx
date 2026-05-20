@@ -1,7 +1,7 @@
+import { siteConfig } from '@/src/site.config'
 import { useUser } from '@shared/hooks/use-user'
 import { authClient } from '@shared/lib/auth-client'
 import { createFileRoute, useNavigate, useSearch } from '@tanstack/react-router'
-import { siteConfig } from '@/src/site.config'
 import { Alert, AlertDescription } from '@ui/components/alert'
 import { Button } from '@ui/components/button'
 import { Card, CardContent } from '@ui/components/card'

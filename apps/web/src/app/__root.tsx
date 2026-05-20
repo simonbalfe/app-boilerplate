@@ -1,13 +1,13 @@
+import env from '@/src/env'
+import { siteConfig } from '@/src/site.config'
 import { LayoutContent } from '@app/components/layout-content'
-import { PostHogProvider } from '@shared/components/providers/posthog-provider'
-import { ThemeProvider } from '@shared/components/providers/theme-provider'
 import { jsonLdScript, organizationSchema, websiteSchema } from '@marketing/lib/schema'
 import { seo } from '@marketing/lib/seo'
+import { PostHogProvider } from '@shared/components/providers/posthog-provider'
+import { ThemeProvider } from '@shared/components/providers/theme-provider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
 import { useState } from 'react'
-import env from '@/src/env'
-import { siteConfig } from '@/src/site.config'
 import '@/src/globals.css'
 
 const THEME_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}})();`
@@ -53,6 +53,7 @@ function RootLayout() {
     <html lang={siteConfig.language} suppressHydrationWarning>
       <head>
         <HeadContent />
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: inline theme script prevents FOUC */}
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body suppressHydrationWarning>
